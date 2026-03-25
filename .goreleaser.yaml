@@ -34,7 +34,7 @@ archives:
 release:
   prerelease: auto
   github:
-    owner: aacebedo
+    owner: NyaMisty
     name: dnsdock
 
 changelog:
@@ -51,8 +51,8 @@ dockers:
     goarch: amd64
     use: buildx
     image_templates:
-      - aacebedo/dnsdock:latest-amd64
-      - aacebedo/dnsdock:{{ .Tag }}-amd64
+      - nyamisty/dnsdock:latest-amd64
+      - nyamisty/dnsdock:{{ .Tag }}-amd64
     build_flag_templates:
       - "--pull"
       - "--platform=linux/amd64"
@@ -62,8 +62,8 @@ dockers:
     goarch: arm
     use: buildx
     image_templates:
-      - aacebedo/dnsdock:latest-arm
-      - aacebedo/dnsdock:{{ .Tag }}-arm
+      - nyamisty/dnsdock:latest-arm
+      - nyamisty/dnsdock:{{ .Tag }}-arm
     build_flag_templates:
       - "--pull"
       - "--platform=linux/arm"
