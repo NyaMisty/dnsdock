@@ -32,6 +32,7 @@
         "golangci-lint run ./..."
       ],
       "release": [
+        "git checkout -- devbox.lock",
         "goreleaser --clean"
       ]
     }
