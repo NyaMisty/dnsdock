@@ -115,7 +115,8 @@ func (s *DNSServer) AddService(id string, service Service) (err error) {
 			s.mux.HandleFunc(alias+".", s.handleRequest)
 		}
 	} else {
-		return fmt.Errorf("Service '%s' ignored: No IP provided:", id)
+		logger.Warningf("Service '%s' ignored: No IP provided:", id)
+		return nil
 	}
 
 	return nil
