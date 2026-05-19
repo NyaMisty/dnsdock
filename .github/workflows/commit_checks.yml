@@ -23,9 +23,9 @@ jobs:
           fetch-depth: 0
 
       - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.8.0
+        uses: jetify-com/devbox-install-action@v0.15.0
         with:
-          devbox-version: 0.9.1
+          devbox-version: 0.17.2
 
       - name: Check commit messages
         run: devbox run -- cz check --rev-range ${{ inputs.base_sha }}..${{ inputs.head_sha }}
@@ -38,9 +38,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.8.0
+        uses: jetify-com/devbox-install-action@v0.15.0
         with:
-          devbox-version: 0.9.1
+          devbox-version: 0.17.2
 
       - name: Lint code
         run:  devbox run lint
@@ -53,9 +53,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.8.0
+        uses: jetify-com/devbox-install-action@v0.15.0
         with:
-          devbox-version: 0.9.1
+          devbox-version: 0.17.2
 
       - name: Run tests
         run:  devbox run test
