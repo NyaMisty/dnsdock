@@ -84,11 +84,15 @@ func (d *DockerManager) run(ctx context.Context) error {
 	for _, container := range containers {
 		service, err := d.getService(container.ID)
 		if err != nil {
-			return fmt.Errorf("error getting service: %w", err)
+			// return fmt.Errorf("error getting service: %w", err)
+			logger.Warningf("error getting service: %w", err)
+			continue
 		}
 		err = d.list.AddService(container.ID, *service)
 		if err != nil {
-			return fmt.Errorf("error adding service: %w", err)
+			// return fmt.Errorf("error adding service: %w", err)
+			logger.Warningf("error adding service: %w", err)
+			continue
 		}
 		services[container.ID] = struct{}{}
 	}
@@ -97,7 +101,9 @@ func (d *DockerManager) run(ctx context.Context) error {
 		if _, ok := services[id]; !ok && srv.Provider == DockerProvider {
 			err := d.list.RemoveService(id)
 			if err != nil {
-				return fmt.Errorf("error removing service: %w", err)
+				// return fmt.Errorf("error removing service: %w", err)
+				logger.Warningf("error removing service: %w", err)
+				continue
 			}
 		}
 	}
@@ -107,7 +113,7 @@ func (d *DockerManager) run(ctx context.Context) error {
 		case m := <-messageChan:
 			err := d.handler(m)
 			if err != nil {
-				return err
+				logger.Warningf("failed to handle message %s: %s", m, err)
 			}
 		case err := <-errorChan:
 			return err
